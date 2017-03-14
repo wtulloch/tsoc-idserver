@@ -22,8 +22,20 @@ namespace TsocIdServer
                     ClientId = "tsoc",
                     ClientName = "tsoc-portal",
                     Enabled = true,
-                    Flow = Flows.Hybrid,
+                    Flow = Flows.Implicit,
                     AllowRememberConsent = true,
+                    AccessTokenType = AccessTokenType.Jwt,
+                    AllowAccessTokensViaBrowser = true,
+                    RedirectUris = { "http://localhost:5003/callback.html" },
+                    PostLogoutRedirectUris = { "http://localhost:5003/index.html" },
+                    AllowedCorsOrigins = { "http://localhost:5003" },
+                    AllowedScopes =
+                    {
+                        "openid",
+                        "profile",
+                        "api1"
+                    }
+
 
                 }
             };
@@ -36,7 +48,12 @@ namespace TsocIdServer
                 StandardScopes.OpenId,
                 StandardScopes.Profile,
                 StandardScopes.Email,
-                StandardScopes.Roles
+                StandardScopes.Roles,
+                new Scope
+                {
+                    Enabled = true,
+                    Name = "api1"
+                }
             };
         }
     }

@@ -16,7 +16,7 @@ namespace TsocIdServer
                 new InMemoryUser
                 {
                     Subject="1",
-                    Username = "Alice",
+                    Username = "alice",
                     Password = "password",
                     Claims = new List<Claim>
                     {
