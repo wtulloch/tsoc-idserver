@@ -24,7 +24,8 @@ namespace TsocIdServer
                         new Claim(JwtClaimTypes.GivenName, "Alice"),
                         new Claim(JwtClaimTypes.FamilyName, "Wonderland"),
                         new Claim(JwtClaimTypes.Email, "alice.wonderland@example.com"),
-                        new Claim(JwtClaimTypes.Role, "user")
+                        new Claim(JwtClaimTypes.Role, "user"),
+                        new Claim("businessId", "123456Adc")
                     }
                 }
             };

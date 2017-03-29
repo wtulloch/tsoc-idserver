@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EntityDescriptor entityID="signon.bigpond.com" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+<IDPSSODescriptor WantAuthnRequestsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+<KeyDescriptor use="signing">
+<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:X509Data>
+<ds:X509Certificate>
+MIICBDCCAW0CBEkbTlUwDQYJKoZIhvcNAQEEBQAwSTELMAkGA1UEBhMCYXUxFzAVBgoJkiaJk/Is
+ZAEZFgd0ZWxzdHJhMRAwDgYDVQQLEwdiaWdwb25kMQ8wDQYDVQQDEwZSQUFTU08wHhcNMDgxMTEy
+MjE0NDUzWhcNMTgxMTEwMjE0NDUzWjBJMQswCQYDVQQGEwJhdTEXMBUGCgmSJomT8ixkARkWB3Rl
+bHN0cmExEDAOBgNVBAsTB2JpZ3BvbmQxDzANBgNVBAMTBlJBQVNTTzCBnzANBgkqhkiG9w0BAQEF
+AAOBjQAwgYkCgYEA7Hv0RkNMnCD/8fY3pobKUkcieEEDbc3sC4cfGDn36OyJNcHqEHMnvsyYiNuo
+B5Gwqb+FI3JknaHXshcjLctiyrYqY2Qb8oErTqYRqEHeVC7J6wpNIpLZ4Z1BZRo7FYABsw2xwKZx
+ygkXHkQhrbwe/SSamp1854PMvI5+apVbXPUCAwEAATANBgkqhkiG9w0BAQQFAAOBgQAPqy+7BByy
+qWB0TVheAaIHtR7rwehZRiPv5Stc2n39L9vOcG/akDRmuNwkP9EJ45Q0FNKZY3yahm5gVNUqryH1
+9hkh2udKuxkGaC8niBF7s4V8pbqDIRdy8e/F7wgKQ1gq5QO15L6JJY+MpAicX5bhfsTUQ0n+MeIS
+wcKEd3wY5A==
+</ds:X509Certificate>
+</ds:X509Data>
+</ds:KeyInfo>
+</KeyDescriptor>
+<KeyDescriptor use="encryption">
+<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:X509Data>
+<ds:X509Certificate>
+MIICBDCCAW0CBEkbTlUwDQYJKoZIhvcNAQEEBQAwSTELMAkGA1UEBhMCYXUxFzAVBgoJkiaJk/Is
+ZAEZFgd0ZWxzdHJhMRAwDgYDVQQLEwdiaWdwb25kMQ8wDQYDVQQDEwZSQUFTU08wHhcNMDgxMTEy
+MjE0NDUzWhcNMTgxMTEwMjE0NDUzWjBJMQswCQYDVQQGEwJhdTEXMBUGCgmSJomT8ixkARkWB3Rl
+bHN0cmExEDAOBgNVBAsTB2JpZ3BvbmQxDzANBgNVBAMTBlJBQVNTTzCBnzANBgkqhkiG9w0BAQEF
+AAOBjQAwgYkCgYEA7Hv0RkNMnCD/8fY3pobKUkcieEEDbc3sC4cfGDn36OyJNcHqEHMnvsyYiNuo
+B5Gwqb+FI3JknaHXshcjLctiyrYqY2Qb8oErTqYRqEHeVC7J6wpNIpLZ4Z1BZRo7FYABsw2xwKZx
+ygkXHkQhrbwe/SSamp1854PMvI5+apVbXPUCAwEAATANBgkqhkiG9w0BAQQFAAOBgQAPqy+7BByy
+qWB0TVheAaIHtR7rwehZRiPv5Stc2n39L9vOcG/akDRmuNwkP9EJ45Q0FNKZY3yahm5gVNUqryH1
+9hkh2udKuxkGaC8niBF7s4V8pbqDIRdy8e/F7wgKQ1gq5QO15L6JJY+MpAicX5bhfsTUQ0n+MeIS
+wcKEd3wY5A==
+</ds:X509Certificate>
+</ds:X509Data>
+</ds:KeyInfo>
+<EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc">
+<xenc:KeySize xmlns:xenc="http://www.w3.org/2001/04/xmlenc#">128</xenc:KeySize>
+</EncryptionMethod>
+</KeyDescriptor>
+
+<NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+<NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
+
+<SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+  Location="https://signonit.bigpond.com/federation/saml2?SPID=TSOC"/>
+<SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+  Location="https://signonit.bigpond.com/logout"
+  ResponseLocation="https://signonit.bigpond.com/logout"/>
+</IDPSSODescriptor>
+</EntityDescriptor>

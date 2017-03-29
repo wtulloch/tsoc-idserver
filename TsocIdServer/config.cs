@@ -23,19 +23,26 @@ namespace TsocIdServer
                     ClientName = "tsoc-portal",
                     Enabled = true,
                     Flow = Flows.Implicit,
-                    AllowRememberConsent = true,
+                    AllowRememberConsent = false,
+                    RequireConsent = false,
                     AccessTokenType = AccessTokenType.Jwt,
-                    AllowAccessTokensViaBrowser = true,
-                    RedirectUris = { "http://localhost:5003/callback.html" },
-                    PostLogoutRedirectUris = { "http://localhost:5003/index.html" },
+                AllowAccessTokensViaBrowser = true,
+                    RedirectUris = { "http://localhost:5003/callback" },
+                    PostLogoutRedirectUris = { "http://localhost:5003/logout" },
                     AllowedCorsOrigins = { "http://localhost:5003" },
                     AllowedScopes =
                     {
-                        "openid",
-                        "profile",
-                        "api1"
-                    }
-
+                        Constants.StandardScopes.OpenId,
+                        Constants.StandardScopes.Email,
+                        Constants.StandardScopes.Profile,
+                        "tsoc",
+                        Constants.StandardScopes.Roles
+                    },
+                   
+                    LogoutUri = "http://localhost:5003/logout",
+                   
+                   
+                    
 
                 }
             };
@@ -46,14 +53,28 @@ namespace TsocIdServer
             return new List<Scope>
             {
                 StandardScopes.OpenId,
-                StandardScopes.Profile,
                 StandardScopes.Email,
                 StandardScopes.Roles,
                 new Scope
                 {
                     Enabled = true,
-                    Name = "api1"
-                }
+                    Name = "tsoc",
+                    Claims = new List<ScopeClaim>
+                    {
+                        new ScopeClaim(Constants.ClaimTypes.Role, true),
+                        new ScopeClaim("businessId", true)
+                    }
+                },
+                new Scope
+                    {
+                        Enabled = true,
+                        Name = Constants.StandardScopes.Profile,
+                        Claims = new List<ScopeClaim>
+                        {
+                            new ScopeClaim(Constants.ClaimTypes.GivenName, true),
+                            new ScopeClaim(Constants.ClaimTypes.FamilyName, true)
+                        }
+                    }
             };
         }
     }
