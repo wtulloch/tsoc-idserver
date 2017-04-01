@@ -14,7 +14,6 @@ namespace TsocIdServer
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-       
 
             routes.MapRoute(
                 name: "Default",

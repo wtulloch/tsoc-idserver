@@ -33,6 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -53,14 +54,6 @@
     </Reference>
     <Reference Include="IdentityServer3.WsFederation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\IdentityServer3.WsFederation.2.6.0\lib\net45\IdentityServer3.WsFederation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Kentor.AuthServices, Version=0.20.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Kentor.AuthServices.0.20.0\lib\net45\Kentor.AuthServices.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Kentor.AuthServices.Owin, Version=0.20.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Kentor.AuthServices.Owin.0.20.0\lib\net45\Kentor.AuthServices.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -153,6 +146,10 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
@@ -192,6 +189,10 @@
     <Content Include="Global.asax" />
     <Content Include="idpMeta_VIT_UAT_TSOC.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TestMetadata.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
@@ -199,7 +200,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Cert.cs" />
     <Compile Include="Config.cs" />
-    <Compile Include="Controllers\CoreController.cs" />
+    <Compile Include="Controllers\Authorisation.cs" />
+    <Compile Include="CoreRedirect.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -223,6 +225,16 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kentor.AuthServices.Owin\Kentor.AuthServices.Owin.csproj">
+      <Project>{fa1e7723-124c-4d2d-a731-e16400b0073b}</Project>
+      <Name>Kentor.AuthServices.Owin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kentor.AuthServices\Kentor.AuthServices.csproj">
+      <Project>{93ba675e-a159-4701-b68b-c4b81015c556}</Project>
+      <Name>Kentor.AuthServices</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
