@@ -198,7 +198,8 @@
     <Compile Include="Cert.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Controllers\Authorisation.cs" />
-    <Compile Include="CoreRedirect.cs" />
+    <Compile Include="Extensions\CoreRedirect.cs" />
+    <Compile Include="Extensions\TelstraClaimsFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

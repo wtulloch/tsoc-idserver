@@ -1,26 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IdentityModel.Metadata;
 using System.IdentityModel.Selectors;
-using System.IdentityModel.Tokens;
-using System.Linq;
-using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Web.Http;
 using IdentityServer3.Core.Configuration;
 using IdentityServer3.Core.Services.Default;
-using IdentityServer3.WsFederation.Configuration;
 using Kentor.AuthServices;
 using Kentor.AuthServices.Configuration;
 using Kentor.AuthServices.Owin;
 using Kentor.AuthServices.WebSso;
-using Microsoft.IdentityModel.Protocols;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
-using Owin;
 using Microsoft.Owin.Security.WsFederation;
+using Owin;
+using TsocIdServer.Extensions;
 using AuthenticationOptions = IdentityServer3.Core.Configuration.AuthenticationOptions;
 
 
@@ -32,20 +27,15 @@ namespace TsocIdServer
     {
         public void Configuration(IAppBuilder app)
         {
-            var apiConfig = new HttpConfiguration();
-            apiConfig.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}");
 
-            app.UseWebApi(apiConfig);
             app.Use<CoreRedirect>();
+
             app.Map("/identity", coreApp =>
             {
                 coreApp.UseIdentityServer(GetIdentityServerOptions());
-                
-
             });
-           
+
+          
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
@@ -72,7 +62,7 @@ namespace TsocIdServer
                 RequireSsl =  false,
                 AuthenticationOptions = new AuthenticationOptions
                 {
-                    EnableLocalLogin = true,
+                    EnableLocalLogin = false,
                     IdentityProviders = ConfigureIdentityProviders,
                     EnablePostSignOutAutoRedirect = true
                 },
@@ -112,7 +102,7 @@ namespace TsocIdServer
                 new EntityId("signon.bigpond.com"), authServicesOptions.SPOptions)
             {
                 SingleSignOnServiceUrl = new Uri("https://signonit.bigpond.com/federation/saml2?SPID=TSOC"),
-                SingleLogoutServiceResponseUrl = new Uri("https://signonit.bigpond.com/logout"),
+                SingleLogoutServiceUrl = new Uri("https://signonit.bigpond.com/logout"),
                 Binding = Saml2BindingType.HttpRedirect,
 
                 SingleLogoutServiceBinding = Saml2BindingType.HttpRedirect,
@@ -127,6 +117,8 @@ namespace TsocIdServer
             app.UseKentorAuthServicesAuthentication(authServicesOptions);
         }
 
+
+      
 
         //Because we don't have a metadata endpoint we need to hardcode the signing certifcate
         private X509Certificate2 GetTelstraSigningCertificate()

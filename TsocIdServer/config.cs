@@ -27,9 +27,9 @@ namespace TsocIdServer
                     RequireConsent = false,
                     AccessTokenType = AccessTokenType.Jwt,
                 AllowAccessTokensViaBrowser = true,
-                    RedirectUris = { "http://localhost:5003/callback" },
-                    PostLogoutRedirectUris = { "http://localhost:5003/logout" },
-                    AllowedCorsOrigins = { "http://localhost:5003" },
+                    RedirectUris = { "http://localhost:4200/login-callback","http://localhost:5003/callback" },
+                    PostLogoutRedirectUris = {"http://localhost:4200", "http://localhost:5003" },
+                    AllowedCorsOrigins = { "http://localhost:4200", "http://localhost:5003" },
                     AllowedScopes =
                     {
                         Constants.StandardScopes.OpenId,
@@ -39,7 +39,7 @@ namespace TsocIdServer
                         Constants.StandardScopes.Roles
                     },
                    
-                    LogoutUri = "http://localhost:5003/logout",
+                   // LogoutUri = "http://localhost:5003/logout",
                    
                    
                     
